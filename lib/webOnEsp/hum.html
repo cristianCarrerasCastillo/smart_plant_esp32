@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperatura & Humedad</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <!-- Simulate a smartphone / tablet look -->
+<div class="mobile-container">
+
+    <!-- Top Navigation Menu -->
+    <div class="topnav">
+      <a href="/" class="active">Smart Plant</a>
+      <div id="myLinks">
+        <a href="#Config">Config</a>
+      </div>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars">Menu</i>
+      </a>
+    </div>
+    
+    <div class="container border-gradient" style="padding-left:16px">
+        <div class="content-table">
+            <!-- Contenido existente -->
+            <span class='emoji'>&#128167</span>
+            <span> Humedad </span>
+            <span id="value-sensor"> 13%</span>
+        </div>
+   
+        <footer>
+            <p>Dev: Cristian Carreras</p>
+        </footer>
+    </div>
+
+    <script>
+        function myFunction() {
+          var x = document.getElementById("myLinks");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "block";
+          }
+        }
+        </script>
+
+</body>
+</html>
