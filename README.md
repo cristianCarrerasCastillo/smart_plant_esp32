@@ -31,9 +31,9 @@ Además, al iniciar, el ESP32 verifica si tiene almacenados en su memoria EEPROM
 
 ## Capturas de Pantalla
 
-![Interfaz Web - Configuración de WiFi](media\scan.jpeg)
-![Interfaz Web - Display humedad](media\home.png)
-![Interfaz Web - Ajuste de Umbral](media\config.png)
+![Interfaz Web - Configuración de WiFi](media/scan.jpeg)
+![Interfaz Web - Display humedad](media/home.png)
+![Interfaz Web - Ajuste de Umbral](media/config.png)
 
 ## Contribuciones
 
