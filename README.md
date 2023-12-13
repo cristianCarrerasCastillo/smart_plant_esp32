@@ -1,4 +1,3 @@
-¡Por supuesto! A continuación, he modificado el README para incluir referencias a imágenes y proporcionar un formato más claro.
 # Control de Bomba de Agua con ESP32 y Sensor de Humedad
 
 ![Logo del Proyecto](url_del_logo)
