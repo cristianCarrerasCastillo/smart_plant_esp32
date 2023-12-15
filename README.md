@@ -1,4 +1,4 @@
-# Control de Bomba de Agua con ESP32 y Sensor de Humedad
+# Smart Plant Wifi
 
 ![Logo del Proyecto](media/logo.png)
 
