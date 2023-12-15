@@ -1,6 +1,6 @@
 # Control de Bomba de Agua con ESP32 y Sensor de Humedad
 
-![Logo del Proyecto](url_del_logo)
+![Logo del Proyecto](media/logo.png)
 
 ## Descripción
 
@@ -31,7 +31,7 @@ Además, al iniciar, el ESP32 verifica si tiene almacenados en su memoria EEPROM
 
 ## Capturas de Pantalla
 
-![Interfaz Web - Configuración de WiFi](media/scan.jpeg)
+![Interfaz Web - Configuración de WiFi](media/scan.png)
 ![Interfaz Web - Display humedad](media/home.png)
 ![Interfaz Web - Ajuste de Umbral](media/config.png)
 
