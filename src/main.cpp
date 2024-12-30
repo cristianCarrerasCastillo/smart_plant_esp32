@@ -31,7 +31,7 @@ char name_device[5];
 char ip_server[15];
 
 // --------- control para motor y lectura de humedad -----------
-const int sensor_humedad = A0;
+const int sensor_humedad = D0;
 int motor = 9; //Tip 120 conectado a pin digital 9
 int read_humedad = 0;
 
@@ -217,6 +217,5 @@ void loop() {
   }
   Serial.println("termino del loop");
   server2.handleClient();
-  
 }
 
