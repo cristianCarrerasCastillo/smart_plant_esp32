@@ -31,8 +31,8 @@ char name_device[5];
 char ip_server[15];
 
 // --------- control para motor y lectura de humedad -----------
-const int sensor_humedad = D0;
-int motor = 9; //Tip 120 conectado a pin digital 9
+const int sensor_humedad = A0;
+int motor = D0; //Tip 120 conectado a pin digital D0
 int read_humedad = 0;
 
 void wifi_config() {
@@ -157,7 +157,10 @@ void modoconf() {
 }
 
 int LeerHumedad(){
-  read_humedad = analogRead(sensor_humedad);  
+  read_humedad = analogRead(sensor_humedad);
+  Serial.println(read_humedad);
+  read_humedad = map(read_humedad, 0, 950, 0, 100);
+  read_humedad = 100 - read_humedad;
   return(read_humedad);
 }
 
@@ -207,12 +210,12 @@ void loop() {
 
   if(read_humedad > trigger_humedad){//todo, setear esta variable por eeprom y que la vaya a leer cuando se presione un boton
     Serial.println("Se enciende el motor");
-    //analogWrite(motor, 255);
+    analogWrite(motor, 255);
     delay(500);
   }
   else{
     Serial.println("Se apaga el motor");
-    //analogWrite(motor, 0);
+    analogWrite(motor, 0);
     delay(3600);
   }
   Serial.println("termino del loop");
