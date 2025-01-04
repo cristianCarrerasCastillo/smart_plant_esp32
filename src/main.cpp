@@ -208,7 +208,7 @@ void loop() {
   Serial.print("trigger_humedad: ");
   Serial.println(trigger_humedad);
 
-  if(read_humedad > trigger_humedad){//todo, setear esta variable por eeprom y que la vaya a leer cuando se presione un boton
+  if(read_humedad < trigger_humedad){
     Serial.println("Se enciende el motor");
     analogWrite(motor, 255);
     delay(500);
