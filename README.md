@@ -28,7 +28,8 @@ Además, al iniciar, el ESP32 verifica si tiene almacenados en su memoria EEPROM
 3. Enciende el ESP32 y espera a que inicie en modo AP si no tiene credenciales WiFi almacenadas.
 4. Conéctate a la red WiFi generada por el ESP32.
 
-![Seleccionar wifi](media/wifi%20connect.png)
+![Seleccionar wifi](media/wifi connect.png)
+
 ![Password wifi](media/wifi%20password.png)
 
 5. Accede a la interfaz web desde tu navegador para configurar la red WiFi 
@@ -45,7 +46,7 @@ Además, al iniciar, el ESP32 verifica si tiene almacenados en su memoria EEPROM
 
 7. Para configurar el humbral en el que se activa el motor, accede a la ruta <ip>:81/config o navega en el menu de la pag
 
-![menu config](media/menu%20config.png)
+![menu config](media/menu config.png)
 ![Interfaz Web - Ajuste de Umbral](media/config.png)
 
 ## Contribuciones
