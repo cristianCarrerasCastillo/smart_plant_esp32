@@ -15,7 +15,7 @@ char ssid[20];
 char password[20];
 
 ESP8266WebServer server(80);
-ESP8266WebServer server2(81);
+ESP8266WebServer server2(80);
 //AsyncWebServer Aserver(80);
 IPAddress ip(192, 168, 1, 130);
 IPAddress gateway(192, 168, 0, 1);
@@ -45,9 +45,7 @@ void wifi_config() {
   String wifi_id = "";
   String wifi_pass = "";
 
-  Serial.println("SSid:");
   wifi_id = leerEeprom(0,len_ssid);
-  Serial.println("psw:");
   wifi_pass = leerEeprom(len_ssid,(len_ssid +len_pass));
   wifi_id.toCharArray(ssid,sizeof(ssid));
   wifi_pass.toCharArray(password,sizeof(password));
@@ -87,9 +85,7 @@ void setup_wifi() {
   int contconexion=0;
 
   WiFi.mode(WIFI_STA); //para que no inicie el SoftAP en el modo normal
-  WiFi.begin(ssid,password);
-  Serial.println(ssid);
-  Serial.println(password);  
+  WiFi.begin(ssid,password); 
   while (WiFi.status() != WL_CONNECTED and contconexion <30){
     delay(500);
     Serial.print(".");
@@ -112,9 +108,9 @@ void setup_wifi() {
 void guardar_conf() {
   Serial.println(server.arg("ssid"));//Recibimos los valores que envia por GET el formulario web
   grabarEeprom(0, server.arg("ssid"));
-  Serial.println(server.arg("pass"));
   grabarEeprom(sizeof(ssid), server.arg("pass"), sizeof(password));
-  mensaje = "Configuracion Guardada...";
+  mensaje = "<body><h1>Se esta guardando la Configuracion </h1></body>";
+  server.send(200, "text/html", header_html + mensaje + footer_html);
   wifi_config();
   setup_wifi();
   if(WiFi.status() != WL_CONNECTED){
@@ -134,10 +130,11 @@ void guardar_conf_workflow(){
   Serial.print("-------- El leido recibido es: ");
   Serial.println(leerEeprom((sizeof(ssid)+sizeof(password)),50));
   grabarEeprom((sizeof(ssid)+sizeof(password)), server2.arg("triggerHumedad"), (sizeof(ssid)+sizeof(password)+sizeof(humbral_humedad)));
-  mensaje = "Configuracion Guardada...";
+  mensaje = "<body><h1>Configuracion Guardada...</h1></body>";
   trigger_humedad = server2.arg("triggerHumedad").toInt();
   Serial.print("triggerHumedad: ");
   Serial.println(humbral_humedad);
+  server2.send(200, "text/html", header_html + mensaje + footer_html);
 }
 
 void modoconf() {
@@ -154,6 +151,8 @@ void modoconf() {
   while (true) {
     server.handleClient();
   }
+  Serial.println("Se cierra el servidor 1");
+  server.close();
 }
 
 int LeerHumedad(){
@@ -202,16 +201,22 @@ void setup() {
 }
 
 void loop() {
+  int prom_humedad = 0;
   read_humedad = LeerHumedad();
   Serial.print("Humedad en: ");
   Serial.println(read_humedad);
   Serial.print("trigger_humedad: ");
   Serial.println(trigger_humedad);
+  for(int i=0; i <= 3; i++){
+    prom_humedad = prom_humedad + read_humedad;
+  }
 
-  if(read_humedad < trigger_humedad){
+  prom_humedad = prom_humedad / 3;
+
+  if(prom_humedad < trigger_humedad){
     Serial.println("Se enciende el motor");
     analogWrite(motor, 255);
-    delay(500);
+    delay(2500);
   }
   else{
     Serial.println("Se apaga el motor");
